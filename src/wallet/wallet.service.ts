@@ -143,9 +143,6 @@ export class WalletConnectService implements OnModuleInit {
   async pairAndApproveQr(sessionId: string, timeoutMs = 5 * 60 * 1000) {
   if (!this.client) throw new Error('WalletConnect client not initialized');
 
-  // const qr = await this.prisma.qrsession.findUnique({ where: { sessionId } });
-  // if (!qr) throw new Error('QR session not found');
-
   const { uri, approval } = await this.createPairing(sessionId);
 
   const approvalPromise = (async () => {

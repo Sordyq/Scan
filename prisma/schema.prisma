@@ -20,20 +20,5 @@ model user {
   privateKey    String?
   publicKey     String?
   walletAddress String?     @unique
-  qrsession     qrsession[]
 }
 
-model qrsession {
-  id        Int       @id @default(autoincrement())
-  sessionId String?   @unique(map: "QrSession_sessionId_key")
-  status    String?   @default("PENDING")
-  userId    String?
-  createdAt DateTime? @default(now())
-  expiresAt DateTime?
-  challenge String?
-  role      String?
-  syncData  String?
-  user      user?     @relation(fields: [userId], references: [id], map: "QrSession_userId_fkey")
-
-  @@index([userId], map: "QrSession_userId_fkey")
-}
